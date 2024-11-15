@@ -1,0 +1,168 @@
+{
+	"info": {
+		"_postman_id": "24ff85c8-facb-4246-897d-238f7eba5bab",
+		"name": "OTP-Auth",
+		"description": "This Postman collection provides a set of endpoints for managing user authentication and OTP-based verification. The collection covers user registration, login, OTP resending, and user details retrieval. Each endpoint is designed to handle a specific part of the authentication flow, with secure OTP validation and device fingerprinting for enhanced security. These APIs are functioning properly for aunthentucation of user using OTP.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39718258",
+		"_collection_link": "https://speeding-capsule-994459.postman.co/workspace/My-Workspace~2bff2343-1582-4759-8d47-f8f25b03d544/collection/39718258-24ff85c8-facb-4246-897d-238f7eba5bab?action=share&source=collection_link&creator=39718258"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"mobile_number\": \"+917570897034\",\r\n  \"name\": \"Nikhi\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"register"
+					]
+				},
+				"description": "This API is used to register a new user by providing the user's mobile number and name. Upon successful registration, an OTP is generated and sent to the user's mobile number for verification."
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"mobile_number\": \"+9175\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				},
+				"description": "This API is used to log in a user using their registered mobile number and the OTP sent during registration. The OTP is validated, and if valid, the user is logged in."
+			},
+			"response": []
+		},
+		{
+			"name": "get-user-detail",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"name": "cache-control",
+						"type": "text"
+					},
+					{
+						"key": "Postman-Token",
+						"value": "<calculated when request is sent>",
+						"name": "postman-token",
+						"type": "text"
+					},
+					{
+						"key": "Host",
+						"value": "<calculated when request is sent>",
+						"name": "host",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "PostmanRuntime/7.39.1",
+						"name": "user-agent",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*",
+						"name": "accept",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br",
+						"name": "accept-encoding",
+						"type": "text"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive",
+						"name": "connection",
+						"type": "text"
+					},
+					{
+						"key": "user_id",
+						"value": "19",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/user/details",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"details"
+					]
+				},
+				"description": "This API is used to retrieve the details of a logged-in user. The user must be authenticated, and the request must include a valid `user_id` in the header."
+			},
+			"response": []
+		},
+		{
+			"name": "resend-otp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"mobile\": \"+917570897034\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/resend-otp",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"resend-otp"
+					]
+				},
+				"description": "This API is used to resend the OTP to the user's registered mobile number in case the OTP expires or is not received. The user must provide the registered mobile number."
+			},
+			"response": []
+		}
+	]
+}
